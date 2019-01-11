@@ -1,5 +1,7 @@
 {
   "name": "ship-ugf",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

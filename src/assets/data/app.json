@@ -1,0 +1,40 @@
+{
+    "version": "1.0.0",
+    "name": "Cafe 69",
+    "config": {
+        "get_config": false,
+        "android": "",
+        "ios": ""
+    },
+    "onesignal": {
+        "enable": false,
+        "app_id": "bfec5fc3-b0c0-4d32-a80d-f32c2331690d",
+        "project_number": "893836876426",
+        "default_onesignal_id": "22d2f455-7a9c-4fb1-9b0f-s382sja22"
+    },
+    "network": {
+        "enable": true,
+        "wifi_macaddress_default": "c0:25:e9:41:71:ba",
+        "wifi_ip_address_default": "192.168.1.224",
+        "resources": "http://"
+    },
+    "device": {
+        "uuid_default": "",
+        "name_default": "Web"
+    },
+    "smartfox": {
+        "smartfox_server": "smartfox_test",
+        "smartfox_primary": {
+            "host": "125.212.192.94",
+            "port": 9000,
+            "zone": "Cafe69Zone",
+            "debug": true
+        },
+        "smartfox_test": {
+            "host": "192.168.1.224",
+            "port": 8886,
+            "zone": "UgfZone",
+            "debug": true
+        }
+    }
+}
