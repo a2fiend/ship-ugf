@@ -6,16 +6,21 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>main</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="ugf-user"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Đơn hàng</ion-title>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<button ion-button (click)="onClickLogout()">log out</button>
+  <button ion-button (click)="onClickLogout()">log out</button>
 
-<button ion-button (click)="onTestRequest()">test request 1</button>
+  <button ion-button (click)="onTestRequest()">test request 1</button>
 
 </ion-content>

@@ -19,8 +19,8 @@ import { UserInfo } from '../../providers/classes/user-info';
 })
 export class LoginPage {
 
-  username: string = "user1";
-  password: string = "123456";
+  username: string = "";
+  password: string = "";
 
   loginType: number;
 
@@ -29,12 +29,6 @@ export class LoginPage {
   ) {
   }
 
-  ionViewDidLoad() {
-    if (!this.mAppModule.isLogin) {
-      this.mAppModule.goToLoadingPage();
-      return;
-    }
-  }
 
   onClickLogin() {
     this.loginType = LOGIN_TYPE.USERNAME_PASSWORD;

@@ -178,6 +178,7 @@ export class ShipUgfSFSConnector extends SFSConnector {
             this.mSFSClient.send(new SFS2X.LoginRequest("", "", params, this.getSFSZone()));
         });
     }
+
     public sendInformationDeviceToServer(oneSignalID: string, deviceName: string, deviecPlatform: number): void {
         if (SFS2X == null || SFS2X == undefined) {
             SFS2X = window['SFS2X'];

@@ -4,7 +4,7 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
-
+@import "./icon.scss";
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -42,6 +42,27 @@ $colors: (
 );
 
 
+$appColors: (primary: #59CEBC,
+secondary: #2EC4B6,
+orange: #FF9F1C,
+black: #011627,
+light: #FDFFFC,
+gray: #707070,
+blue: #2763EA,
+violet: #7464ED,
+green: #00ff55b6,
+red: #f53d3d
+);
+
+$appSize: (
+  mini: 1rem,
+  small: 1.1rem,
+  semi: 1.3rem,
+  normal: 1.5rem,
+  large: 1.7rem,
+  big: 2rem
+);
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -78,7 +99,7 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
-@import "ionic.ionicons";
+@import "ionicons";
 
 
 // Fonts

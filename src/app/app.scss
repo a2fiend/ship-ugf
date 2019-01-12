@@ -14,3 +14,320 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.background-image{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .primary-background {
+    background: map-get($map: $appColors, $key: primary);
+  }
+  .secondary-background {
+    background: map-get($map: $appColors, $key: secondary);
+  }
+  .orange-background {
+    background: map-get($map: $appColors, $key: orange);
+  }
+  .blue-background {
+    background: map-get($map: $appColors, $key: blue);
+  }
+  .gray-background {
+    background: map-get($map: $appColors, $key: gray);
+  }
+  .violet-background {
+    background: map-get($map: $appColors, $key: violet);
+  }
+  
+  .aqua-color{
+    color: #2EC4B6 !important;
+  }
+  
+  .green-color {
+    color: #22c552;
+  }
+  
+  .red-color{
+    color: red
+  }
+  
+  .blue-color {
+    color: map-get($map: $appColors, $key: blue);
+  }
+  .primary-color {
+    color: map-get($map: $appColors, $key: primary) !important;
+  }
+  
+  .secondary-color {
+    color: map-get($map: $appColors, $key: secondary);
+  }
+  
+  .green-color {
+    color: map-get($map: $appColors, $key: green);
+  }
+  
+  .violet-color {
+    color: map-get($map: $appColors, $key: violet);
+  }
+  
+  .red-color {
+    color: map-get($map: $appColors, $key: red);
+  }
+  
+  .orange-color {
+    color: map-get($map: $appColors, $key: orange);
+  }
+  
+  .light-color {
+    color: map-get($map: $appColors, $key: light);
+  }
+  
+  .black-color {
+    color: map-get($map: $appColors, $key: black) !important;
+  }
+  
+  .gray-color {
+    color: map-get($map: $appColors, $key: gray);
+  }
+  
+  .toolbar-background {
+    background-color: map-get($map: $appColors, $key: primary);
+  }
+  
+  .toolbar-title {
+    color: white;
+  }
+  
+  .bar-button-default {
+    color: white !important;
+  }
+  
+  .bar-buttons {
+    color: white !important;
+  }
+  
+  .title-font-1 {
+    font-size: 1.4rem;
+    font-family: "NSIntel" !important;
+  }
+  
+  .toolbar-title{
+    font-family: "NSIntel" !important;
+    font-size: 1.7rem !important;
+  }
+  
+  .body-font {
+    font-size: 1.4rem;
+    font-family: "NSIntel" !important;
+  }
+  
+  .body-font-small {
+    font-size: 1.2rem !important;
+    font-family: "NSIntel" !important;
+  }
+  
+  .body-font-italic {
+    font-size: 1.4rem;
+    font-family: "NSIntel_Italic" !important;
+  }
+  
+  .body-font-small-italic {
+    font-size: 1rem;
+    font-family: "NSIntel_Italic" !important;
+  }
+  
+  .body-font-bold{
+    font-size: 1.4rem;
+    font-family: "NSIntelBold" !important;
+  }
+  .body-font-bold-small{
+    font-size: 1.2rem;
+    font-family: "NSIntelBold" !important;
+  }
+  .body-font-bold-italic{
+    font-size: 1.2rem;
+    font-family: "NSIntelBold_Italic" !important;
+  }
+  
+  .font-bold{
+    font-weight: bold;
+  }
+  
+  .list-ios>.item-block:first-child {
+    border-top: 0;
+  }
+  
+  .list-ios>.item-block:last-child {
+    border-bottom: 0;
+  }
+  .opacity-0{
+    opacity: 0;
+  }
+  
+  .item>ion-icon,
+  .item-inner>ion-icon {
+    min-height: 2rem;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  
+  .item {
+    .item-inner {
+      border-bottom: 0 !important;
+    }
+  
+    border-bottom: 1px solid #EFEFEF !important;
+  }
+  
+  .item:last-child {
+    border-bottom: 0 !important;
+  }
+  
+  .border-top {
+    border-top: 1px solid #EFEFEF !important;
+  }
+  
+  .border-bottom {
+    border-bottom: 1px solid #EFEFEF !important;
+  }
+  
+  .border-left {
+    border-left: 1px solid #EFEFEF !important;
+  }
+  
+  .border-right {
+    border-right: 1px solid #EFEFEF !important;
+  }
+  
+  .white-bg {
+    background: white;
+  }
+  
+  ion-list {
+    margin-bottom: 0px !important;
+  }
+  
+  .filter-container {
+    height: 44px;
+    padding-left: 0.4rem;
+  
+    .row {
+      padding: 0 5px;
+    }
+  
+    .col {
+      padding: 0;
+    }
+  
+    .btn-filter {
+      font-size: 1.2rem;
+      min-width: 0;
+    }
+  
+    [icon-only] ion-icon {
+      padding: 0 0.2em;
+    }
+  }
+  
+  .btn-bottom{
+    min-width: 70%;
+    margin: 10px auto;
+    border-radius: 20px;
+    height: 2.4em;
+  }
+  .button-page{
+    width: 70%;
+    border-radius: 20px;
+  }
+  
+  .circle{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  
+  .footer{
+    padding: 5px;
+    box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .2);
+  }
+  
+  .background{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 100% 100%;
+  }
+  
+  .flex{
+    display: flex;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .between-space{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .justify-center{
+    justify-content: center;
+  }
+  .padding-10{
+    padding: 10px;
+  }
+  
+  .padding-20{
+    padding: 20px;
+  }
+  
+  .padding-30{
+    padding: 30px;
+  }
+  
+  .background-white{
+    background: white;
+  }
+  
+  .font-CAFETA{
+    font-family: "CAFETA__" !important;
+  }
+  
+  .big-font {
+    font-size: map-get($map: $appSize, $key: big);
+  }
+  
+  .large-font {
+    font-size: map-get($map: $appSize, $key: large);
+  }
+  
+  .normal-font {
+    font-size: map-get($map: $appSize, $key: normal);
+  }
+  
+  .semi-font {
+    font-size: map-get($map: $appSize, $key: semi);
+  }
+  
+  .small-font {
+    font-size: map-get($map: $appSize, $key: small);
+  }
+  
+  .mini-font {
+    font-size: map-get($map: $appSize, $key: mini);
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
