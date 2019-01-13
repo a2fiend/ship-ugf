@@ -48,6 +48,10 @@
   .red-color{
     color: red
   }
+
+  .white-color{
+    color: white;
+  }
   
   .blue-color {
     color: map-get($map: $appColors, $key: blue);

@@ -197,6 +197,13 @@ export class ShipUgfSFSConnector extends SFSConnector {
         this.send(this.mUgf + ShipUgfSFSCmd.USER_GET_INFO, params);
     }
 
+    public rendRequestUSER_REGISTER(user: UserBean) {
+        let params = new SFS2X.SFSObject();
+        params = user.toSFSObject(params);
+
+        this.send(this.mUgf + ShipUgfSFSCmd.USER_REGISTER, params);
+    }
+
     public rendRequestUSER_UPDATE_INFO(user: UserBean) {
         let params = new SFS2X.SFSObject();
         params = user.toSFSObject(params);

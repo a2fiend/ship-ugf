@@ -144,13 +144,13 @@ export class AppModuleProvider {
     OneSignalManager.getInstance().setOneSignal(this.mOneSignal);
   }
 
-  doLogin(userInfo: UserInfo) {
+  doLogin(userInfo: UserInfo, loginType: number) {
     return new Promise((resolve, reject) => {
       this.newDeviceInfo.setOnesignalID(OneSignalManager.getInstance().getOneSignalID())
       this.newDeviceInfo.setName(DeviceManager.getInstance().getDeviceName());
       this.newDeviceInfo.setPlatform(DeviceManager.getInstance().getPlatform());
 
-      ShipUgfSFSConnector.getInstance().login(3, this.newDeviceInfo, userInfo).then((params) => {
+      ShipUgfSFSConnector.getInstance().login(loginType, this.newDeviceInfo, userInfo).then((params) => {
         ShipUgfSFSConnector.getInstance().addListenerForExtensionResponse();
         return resolve(params);
       }).catch((err) => {
@@ -234,6 +234,23 @@ export class AppModuleProvider {
 
       }
     });
+    alert.present();
+  }
+
+  public showAlertLogout() {
+    let alert = this.mAlertController.create();
+    alert.setTitle("Thông báo");
+    alert.setMessage("Bạn muốn đăng xuất khỏi ứng dụng ?");
+    alert.addButton("Không");
+    alert.addButton({
+      text: "Có",
+      handler: () => {
+        this.doLogout().then(() => {
+          this.isLogin = false;
+          this.goToLoadingPage();
+        });
+      }
+    })
     alert.present();
   }
 

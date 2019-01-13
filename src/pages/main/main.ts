@@ -41,7 +41,7 @@ export class MainPage {
         this.onExtensionResponse(response);
       });
 
-    })
+    });
   }
 
   ionViewWillUnload() {
@@ -62,11 +62,6 @@ export class MainPage {
   onExtensionUSER_GET_INFO(data) {
     console.log(data);
 
-  }
-
-  onClickLogout() {
-    this.mAppModule.doLogout();
-    this.navCtrl.push("LoadingPage")
   }
 
   onTestRequest() {

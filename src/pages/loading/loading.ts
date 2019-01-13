@@ -8,9 +8,10 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { DeviceManager } from '../../providers/core/plugin/device-manager';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CONNECT_STATE, APPKEYS } from '../../providers/app-module/app-constants';
+import { LOGIN_TYPE } from '../../providers/app-module/app-constants';
 import { ShipUgfSFSConnector } from '../../providers/ship-ugf-sfs/shipugf-connector';
 import { UserInfo } from '../../providers/classes/user-info';
+import { SFSConnector } from '../../providers/core/smartfox/sfs-connector';
 
 /**
  * Generated class for the LoadingPage page.
@@ -28,7 +29,7 @@ export class LoadingPage {
 
   userInfo: UserInfo = new UserInfo();
 
-  public mState = CONNECT_STATE.STATE_NONE;
+  public mState = SFSConnector.STATE_DISCONNECTED;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public mAppModule: AppModuleProvider,
@@ -66,12 +67,12 @@ export class LoadingPage {
 
   doConnectToServer() {
     ShipUgfSFSConnector.getInstance().connect().then(() => {
-      this.mState = CONNECT_STATE.STATE_CONNECTED;
+      this.mState = SFSConnector.STATE_CONNECTED;
       this.mAppModule.doLoadUserInfoFromStorage().then(userinfo => {
         if (userinfo) {
           let userinfoObj = JSON.parse(userinfo);
           this.userInfo.fromObject(userinfoObj);
-          this.mAppModule.doLogin(this.userInfo).then(data => {
+          this.mAppModule.doLogin(this.userInfo, LOGIN_TYPE.USERNAME_PASSWORD).then(data => {
             this.mAppModule.onLoginSuccess(data);
             this.navCtrl.push("MainPage");
           }, error => { });

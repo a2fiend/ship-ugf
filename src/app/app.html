@@ -7,8 +7,8 @@
                 <div>
                     <img class="avatar-img" [src]="'./assets/imgs/logo.png'">
                 </div>
-                <div padding-vertical class="bold normal-font">
-                    <span>Kim Cương</span>
+                <div padding-vertical text-center class="bold normal-font">
+                    <span>{{mAppModule.getUser().getName()}}</span>
                 </div>
             </div>
         </div>
@@ -18,22 +18,22 @@
         <div margin>
             <div class="flex">
                 <ion-icon class="green-color" name="ugf-phone"></ion-icon>
-                <span>&ensp;01234567898</span>
+                <span>&ensp;{{mAppModule.getUser().getPhone() || 'Chưa cập nhật'}}</span>
             </div>
             <div padding-top class="flex">
                 <ion-icon class="orange-color" name="ugf-email"></ion-icon>
-                <span>&ensp;email@gmail.com</span>
+                <span>&ensp;{{mAppModule.getUser().getEmail() || 'Chưa cập nhật'}}</span>
             </div>
-            <div padding-top class="flex">
+            <!-- <div padding-top class="flex">
                 <ion-icon class="blue-color" name="ugf-address"></ion-icon>
-                <span>&ensp;121 le thanh nghi</span>
-            </div>
+                <span>&ensp;{{mAppModule.getUser().getAddress() || 'Chưa cập nhật'}}</span>
+            </div> -->
         </div>
 
         <div margin-horizontal style="border-bottom: 1px solid gray"></div>
 
         <div margin>
-            <div class="flex">
+            <div class="flex" (click)="onClickLogout()">
                 <ion-icon class="red-color" name="ugf-logout"></ion-icon>
                 <span>&ensp;Đăng xuất</span>
             </div>

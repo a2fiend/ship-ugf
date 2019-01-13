@@ -29,9 +29,20 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         if (cmd == ShipUgfSFSCmd.USER_GET_INFO) {
             return this.onExtensionUSER_GET_INFO(params);
         }
+        else if (cmd == ShipUgfSFSCmd.USER_REGISTER) {
+            return this.onExtensionUSER_REGISTER(params);
+        }
     }
 
     public onExtensionUSER_GET_INFO(params) {
+        let data = this.doParseInfo(params);
+        let info = data.info;
+        let object = new UserBean();
+        object.fromSFSObject(info);
+        return object;
+    }
+
+    public onExtensionUSER_REGISTER(params) {
         let data = this.doParseInfo(params);
         let info = data.info;
         let object = new UserBean();

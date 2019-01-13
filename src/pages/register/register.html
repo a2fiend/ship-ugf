@@ -1,15 +1,19 @@
 <!--
-  Generated template for the LoginPage page.
+  Generated template for the RegisterPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 
-
 <ion-content>
+
+  <div class="btn-close center" (click)="onClickClose()">
+    <ion-icon name="md-close"></ion-icon>  
+  </div>
+
   <div class="m-background background-image"></div>
   <div class="m-space center">
-      <span class="m-logo">UGF</span>
+    <span class="m-logo">UGF</span>
   </div>
   <div class="m-box">
 
@@ -34,14 +38,22 @@
         </div>
       </div>
     </div>
-    <div class="center" style="margin-top: 20px">
-      <button class="login-btn" ion-button (click)="onClickLogin()">Đăng nhập</button>
-    </div>
-    <div margin-top class="center text-register">
-      <span class="no-account">Bạn chưa có tài khoản?</span>&ensp;
-      <span class="bold color-blue" style="color: white" (click)="onClickRegister()" tappable>Đăng ký</span>
-    </div>
-  </div>
 
+    <div class="center" margin-top>
+      <div class="m-input flex">
+        <div class="center" style="width: 15%; color: white">
+          <ion-icon name="ugf-lock"></ion-icon>
+        </div>
+        <div style="width: 85%">
+          <ion-input placeholder="Xác nhận mật khẩu" type="password" [(ngModel)]="rePassword"></ion-input>
+        </div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top: 20px">
+      <button class="login-btn" ion-button (click)="onClickRegister()">Đăng ký</button>
+    </div>
+
+  </div>
 
 </ion-content>
