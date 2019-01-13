@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserBean } from '../classes/user-bean';
 import { Http } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
-import { Platform, LoadingController, ToastController, AlertController, ModalController, Loading, App } from 'ionic-angular';
+import { Platform, LoadingController, ToastController, AlertController, ModalController, Loading, App, ActionSheetController } from 'ionic-angular';
 import { NetworkInterface } from '@ionic-native/network-interface';
 import { Device } from '@ionic-native/device';
 import { OneSignal } from '@ionic-native/onesignal';
@@ -53,6 +53,7 @@ export class AppModuleProvider {
     private mToastController: ToastController,
     public mAlertController: AlertController,
     public mModalController: ModalController,
+    private mActionSheetController: ActionSheetController,
   ) {
     this.mNetworkController._setNetwork(this.mNetwork);
     this.mHttpClient = new WiadsHttpClient();
@@ -368,6 +369,58 @@ export class AppModuleProvider {
       type: "password"
     });
 
+    alert.present();
+  }
+
+  public showActionSheet(
+    title: string,
+    mArray: Array<{ id: any; name: string; role?: string }>,
+    callback: any
+  ) {
+    let actionSheet = this.mActionSheetController.create();
+    actionSheet.setTitle(title);
+    mArray.forEach((element, index) => {
+      actionSheet.addButton({
+        text: element.name,
+        role: element.role ? element.role : "",
+        handler: () => {
+          callback(element.id);
+        }
+      });
+    });
+    actionSheet.addButton({
+      text: "Thoát",
+      role: "cancel",
+      handler: () => {
+        callback();
+      }
+    });
+    actionSheet.present();
+  }
+
+  public showRadio(
+    title: string,
+    arrayInput: Array<{ id: any; name: string }>,
+    idselected: any,
+    callback: any
+  ) {
+    let alert = this.mAlertController.create();
+    alert.setTitle(title);
+    arrayInput.forEach(element => {
+      alert.addInput({
+        type: "radio",
+        label: element.name,
+        value: element.id + "",
+        checked: element.id == idselected ? true : false
+      });
+    });
+    alert.addButton("Cancel");
+    alert.addButton({
+      text: "OK",
+      handler: data => {
+        callback(data);
+      }
+    });
     alert.present();
   }
 

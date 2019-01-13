@@ -1,7 +1,43 @@
 <ion-menu [content]="content" type="push">
 
-    <ion-content no-bounce>
-       <div>dsfsdf</div>
+    <ion-content no-bounce class="m-menu background-image">
+        <div padding></div>
+        <div class="center">
+            <div>
+                <div>
+                    <img class="avatar-img" [src]="'./assets/imgs/logo.png'">
+                </div>
+                <div padding-vertical class="bold normal-font">
+                    <span>Kim Cương</span>
+                </div>
+            </div>
+        </div>
+
+        <div margin-horizontal style="border-bottom: 1px solid gray"></div>
+
+        <div margin>
+            <div class="flex">
+                <ion-icon class="green-color" name="ugf-phone"></ion-icon>
+                <span>&ensp;01234567898</span>
+            </div>
+            <div padding-top class="flex">
+                <ion-icon class="orange-color" name="ugf-email"></ion-icon>
+                <span>&ensp;email@gmail.com</span>
+            </div>
+            <div padding-top class="flex">
+                <ion-icon class="blue-color" name="ugf-address"></ion-icon>
+                <span>&ensp;121 le thanh nghi</span>
+            </div>
+        </div>
+
+        <div margin-horizontal style="border-bottom: 1px solid gray"></div>
+
+        <div margin>
+            <div class="flex">
+                <ion-icon class="red-color" name="ugf-logout"></ion-icon>
+                <span>&ensp;Đăng xuất</span>
+            </div>
+        </div>
     </ion-content>
 
 </ion-menu>

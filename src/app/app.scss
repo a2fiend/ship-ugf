@@ -45,10 +45,6 @@
     color: #2EC4B6 !important;
   }
   
-  .green-color {
-    color: #22c552;
-  }
-  
   .red-color{
     color: red
   }
@@ -190,7 +186,7 @@
   }
   
   .border-bottom {
-    border-bottom: 1px solid #EFEFEF !important;
+    border-bottom: 1px solid lightgray !important;
   }
   
   .border-left {
@@ -330,4 +326,28 @@
   
   .bold {
     font-weight: bold;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+
+  .avatar-img{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+
+  .m-menu{
+    background-color: map-get($map: $appColors, $key: primary);
+    background-image: url("/assets/imgs/menubackground.png")
+  }
+
+  .padding-5{
+    padding: 5px;
+  }
+  .padding-top-5{
+    padding-top: 5px;
+  }
+  .padding-bottom-5{
+    padding-bottom: 5px;
   }

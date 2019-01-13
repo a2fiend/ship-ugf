@@ -1,0 +1,70 @@
+<!--
+  Generated template for the OrderDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only navPop>
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Chi tiết đơn hàng</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div margin class="m-box">
+    <div padding-horizontal class="between-space">
+      <span class="bold normal-font">{{mOrder.code}}</span>
+      <ion-icon [hidden]="mOrder.state!=3" class="big-font orange-color" name="ugf-edit"></ion-icon>
+    </div>
+
+    <div padding-horizontal padding-top>
+      <div>
+        <span class="underline semi-font">Người gửi</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <ion-icon class="red-color" name="ugf-user"></ion-icon>&ensp;
+        <span class="bold normal-font">{{mOrder.senderName || 'Chưa cập nhật'}}</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <ion-icon class="green-color" name="ugf-phone"></ion-icon>&ensp;
+        <span>{{mOrder.senderPhone || 'Chưa cập nhật'}}</span>
+      </div>
+    </div>
+
+    <div padding-horizontal padding-top>
+      <div>
+        <span class="underline semi-font">Người nhận</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <ion-icon class="red-color" name="ugf-user"></ion-icon>&ensp;
+        <span class="bold normal-font">{{mOrder.targetName || 'Chưa cập nhật'}}</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <ion-icon class="green-color" name="ugf-phone"></ion-icon>&ensp;
+        <span>{{mOrder.targetPhone || 'Chưa cập nhật'}}</span>
+      </div>
+    </div>
+
+    <div padding-horizontal padding-top>
+      <div>
+        <span class="underline semi-font">Địa chỉ nhận hàng</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <ion-icon class="blue-color" name="ugf-address"></ion-icon>&ensp;
+        <span>{{mOrder.address || 'Chưa cập nhật'}}</span>
+      </div>
+    </div>
+
+    <div padding-top class="center">
+      <span [class.state1]="mOrder.state==1" [class.state2]="mOrder.state==2" [class.state3]="mOrder.state==3">{{mOrder.state | orderType}}</span>
+    </div>
+  </div>
+</ion-content>

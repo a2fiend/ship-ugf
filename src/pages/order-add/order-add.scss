@@ -1,0 +1,14 @@
+page-order-add {
+    .btn-add{
+        background-color: map-get($map: $appColors, $key: primary);
+        border-radius: 20px;
+        box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
+    }
+    .m-box{
+        margin: 10px;
+        padding: 1px 10px;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .16);
+        background-color: rgba($color: map-get($map: $appColors, $key: primary), $alpha: .2);
+    }
+}

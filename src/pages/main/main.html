@@ -13,14 +13,58 @@
       </button>
     </ion-buttons>
     <ion-title>Đơn hàng</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="onClickFilter()">
+        <ion-icon name="ugf-filter"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click)="onClickLogout()">log out</button>
+<ion-content>
+  <div>
+    <ion-searchbar mode="ios"></ion-searchbar>
+  </div>
 
-  <button ion-button (click)="onTestRequest()">test request 1</button>
+  <div class="m-order" *ngFor="let item of listOrder" [class.bg-state1]="item.state==1" [class.bg-state2]="item.state==2"
+    [class.bg-state3]="item.state==3">
+    <ion-row class="flex">
+      <ion-col col-1>
+        <div class="center" style="font-size: 1.7rem">
+          <ion-icon *ngIf="item.state==1" class="state1" name="ugf-done"></ion-icon>
+          <ion-icon *ngIf="item.state==2" class="state2" name="ugf-sign"></ion-icon>
+          <ion-icon *ngIf="item.state==3" class="state3" name="ugf-question"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col col-10 (click)="onClickItem(item)">
+        <div>
+          <span class="bold normal-font">{{item.senderName}}</span>
+          <span>(Người gửi)</span>
+        </div>
+        <div>
+          <span class="semi-font">{{item.code}}</span>
+        </div>
+        <div padding-top>
+          <span>{{item.senderPhone}}</span>
+        </div>
+        <div>
+          <span>{{item.address}}</span>
+        </div>
+      </ion-col>
+      <ion-col col-1>
+        <div class="center" style="font-size: 1.7rem" (click)="onClickMore(item)" tappable>
+          <ion-icon name="md-more"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-fab bottom right>
+    <button ion-fab mini class="primary-background" (click)="onClickAddOrder()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>

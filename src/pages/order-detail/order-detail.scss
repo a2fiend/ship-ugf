@@ -1,0 +1,17 @@
+page-order-detail {
+    .m-box{
+        background-color: rgba($color: map-get($map: $appColors, $key: primary), $alpha: .2);
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .state1{
+        color: map-get($map: $appColors, $key: green);
+    }
+    .state2{
+        color: map-get($map: $appColors, $key: blue);
+
+    }
+    .state3{
+        color: map-get($map: $appColors, $key: orange);
+    }
+}
