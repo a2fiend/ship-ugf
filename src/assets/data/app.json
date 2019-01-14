@@ -25,13 +25,13 @@
     "smartfox": {
         "smartfox_server": "smartfox_test",
         "smartfox_primary": {
-            "host": "125.212.192.94",
-            "port": 9000,
-            "zone": "Cafe69Zone",
+            "host": "163.44.192.123",
+            "port": 8887,
+            "zone": "UgfZone",
             "debug": true
         },
         "smartfox_test": {
-            "host": "192.168.0.106",
+            "host": "192.168.1.224",
             "port": 8886,
             "zone": "UgfZone",
             "debug": true

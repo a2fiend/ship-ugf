@@ -2,6 +2,7 @@ import { SfsClientBaseExtension } from "../core/smartfox/sfs-client-extension";
 import { ParamsKey } from "../app-module/paramskey";
 import { ShipUgfSFSCmd } from "./shipugf-cmd";
 import { UserBean } from "../classes/user-bean";
+import { OrderBean } from "../classes/order-bean";
 
 export class ShipUgfBaseExtension extends SfsClientBaseExtension {
     public static _instance: ShipUgfBaseExtension = null;
@@ -32,6 +33,9 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         else if (cmd == ShipUgfSFSCmd.USER_REGISTER) {
             return this.onExtensionUSER_REGISTER(params);
         }
+        else if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
+            return this.onExtensionUSER_ADD_ORDER(params);
+        }
     }
 
     public onExtensionUSER_GET_INFO(params) {
@@ -46,6 +50,14 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         let data = this.doParseInfo(params);
         let info = data.info;
         let object = new UserBean();
+        object.fromSFSObject(info);
+        return object;
+    }
+
+    public onExtensionUSER_ADD_ORDER(params) {
+        let data = this.doParseInfo(params);
+        let info = data.info;
+        let object = new OrderBean();
         object.fromSFSObject(info);
         return object;
     }

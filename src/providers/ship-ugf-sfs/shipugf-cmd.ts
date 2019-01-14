@@ -5,6 +5,7 @@ export class ShipUgfSFSCmd {
     public static USER_REGISTER						: string = "user_register";	
 	public static USER_UPDATE_INFO					: string = "user_update_info";
 	public static USER_GET_LIST_ORDER				: string = "user_get_list_order";
+	public static USER_ADD_ORDER					: string = "user_add_order";
 	public static USER_UPDATE_ORDER					: string = "user_update_order";
 	public static USER_DELETE_ORDER					: string = "user_delete_order";
 	public static USER_FILTER_ORDER					: string = "user_filter_order";

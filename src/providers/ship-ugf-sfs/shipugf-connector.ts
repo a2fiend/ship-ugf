@@ -218,6 +218,13 @@ export class ShipUgfSFSConnector extends SFSConnector {
         this.send(this.mUgf + ShipUgfSFSCmd.USER_GET_LIST_ORDER, params);
     }
 
+    public rendRequestUSER_ADD_ORDER(order: OrderBean) {
+        let params = new SFS2X.SFSObject();
+        params = order.toSFSObject(params);
+
+        this.send(this.mUgf + ShipUgfSFSCmd.USER_ADD_ORDER, params);
+    }
+
     public rendRequestUSER_UPDATE_ORDER(order: OrderBean) {
         let params = new SFS2X.SFSObject();
         params = order.toSFSObject(params);

@@ -4,6 +4,9 @@ import { AppModuleProvider } from '../../providers/app-module/app-module';
 import { OrderBean } from '../../providers/classes/order-bean';
 
 import moment from 'moment';
+import { ShipUgfSFSConnector } from '../../providers/ship-ugf-sfs/shipugf-connector';
+import { ShipUgfBaseExtension } from '../../providers/ship-ugf-sfs/shipugf-base-extension';
+import { ShipUgfSFSCmd } from '../../providers/ship-ugf-sfs/shipugf-cmd';
 
 /**
  * Generated class for the OrderAddPage page.
@@ -43,6 +46,35 @@ export class OrderAddPage {
       this.mAppModule.goToLoadingPage();
       return;
     }
+    this.mAppModule._LoadAppConfig().then(() => {
+      ShipUgfSFSConnector.getInstance().addListener("OrderAddPage", response => {
+        this.onExtensionResponse(response);
+      });
+
+    });
+  }
+
+  ionViewWillUnload() {
+    ShipUgfSFSConnector.getInstance().removeListener("OrderAddPage");
+  }
+
+  onExtensionResponse(response) {
+    let cmd = response.cmd;
+    let params = response.params;
+    if (ShipUgfBaseExtension.getInstance().doCheckStatusParams(params)) {
+      let data = ShipUgfBaseExtension.getInstance().doBaseExtension(cmd, params);
+      if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
+        this.onExtensionUSER_ADD_ORDER(data);
+      }
+    }
+  }
+
+  onExtensionUSER_ADD_ORDER(data) {
+    if(data) {
+      this.mAppModule.showToast("Tạo đơn hàng thành công");
+      
+    }
+
   }
 
   onDateChange() {
@@ -54,8 +86,7 @@ export class OrderAddPage {
   }
 
   onClickCreateOrder() {
-    console.log(this.mOrder);
-
+    ShipUgfSFSConnector.getInstance().rendRequestUSER_ADD_ORDER(this.mOrder);
   }
 
   onClickSaveOrder() {
