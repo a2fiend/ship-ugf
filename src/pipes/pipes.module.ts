@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { OrderTypePipe } from './order-type/order-type';
+import { TimeToStringPipe } from './time-to-string/time-to-string';
 @NgModule({
-	declarations: [OrderTypePipe],
+	declarations: [OrderTypePipe,
+    TimeToStringPipe],
 	imports: [],
-	exports: [OrderTypePipe]
+	exports: [OrderTypePipe,
+    TimeToStringPipe]
 })
 export class PipesModule {}

@@ -191,48 +191,49 @@ export class ShipUgfSFSConnector extends SFSConnector {
         this.send("ugf. " + ShipUgfSFSCmd.UPDATE_LOGIN_DEVICE, params);
     }
 
-    public rendRequestUSER_GET_INFO() {
+    public sendRequestUSER_GET_INFO() {
         let params = new SFS2X.SFSObject();
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_GET_INFO, params);
     }
 
-    public rendRequestUSER_REGISTER(user: UserBean) {
+    public sendRequestUSER_REGISTER(user: UserBean) {
         let params = new SFS2X.SFSObject();
         params = user.toSFSObject(params);
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_REGISTER, params);
     }
 
-    public rendRequestUSER_UPDATE_INFO(user: UserBean) {
+    public sendRequestUSER_UPDATE_INFO(user: UserBean) {
         let params = new SFS2X.SFSObject();
         params = user.toSFSObject(params);
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_UPDATE_INFO, params);
     }
 
-    public rendRequestUSER_GET_LIST_ORDER(page: number) {
+    public sendRequestUSER_GET_LIST_ORDER(page?: number, state?: number) {
         let params = new SFS2X.SFSObject();
-        params.putInt(ParamsKey.PAGE, page);
+        if (page || page != null) params.putInt(ParamsKey.PAGE, page);
+        if (state && state > -1) params.putInt(ParamsKey.STATE, Number(state + ""));
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_GET_LIST_ORDER, params);
     }
 
-    public rendRequestUSER_ADD_ORDER(order: OrderBean) {
+    public sendRequestUSER_ADD_ORDER(order: OrderBean) {
         let params = new SFS2X.SFSObject();
         params = order.toSFSObject(params);
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_ADD_ORDER, params);
     }
 
-    public rendRequestUSER_UPDATE_ORDER(order: OrderBean) {
+    public sendRequestUSER_UPDATE_ORDER(order: OrderBean) {
         let params = new SFS2X.SFSObject();
         params = order.toSFSObject(params);
 
         this.send(this.mUgf + ShipUgfSFSCmd.USER_UPDATE_ORDER, params);
     }
 
-    public rendRequestUSER_DELETE_ORDER(orderID: number) {
+    public sendRequestUSER_DELETE_ORDER(orderID: number) {
         let params = new SFS2X.SFSObject();
         params.putInt(ParamsKey.ORDER_ID, orderID);
 

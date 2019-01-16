@@ -307,14 +307,15 @@ export class AppModuleProvider {
     }
   }
 
-  public showAlert(title: string, callback: any) {
+  public showAlert(title: string, callback: any, message?: string) {
     let alert = this.mAlertController.create();
     alert.setTitle(title);
+    if (message) alert.setSubTitle(message);
     alert.addButton({
       text: "Cancel",
       role: "cancel",
       handler: () => {
-        callback(0);
+        callback();
       }
     });
 

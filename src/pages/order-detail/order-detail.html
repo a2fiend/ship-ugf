@@ -63,8 +63,19 @@
       </div>
     </div>
 
+    <div padding-horizontal padding-top>
+        <div>
+          <span class="underline semi-font">Thời gian nhận hàng</span>
+        </div>
+        <div class="padding-top-5 flex">
+          <ion-icon class="orange-color" name="md-time"></ion-icon>&ensp;
+          <span>{{mOrder.timeSend | timeToString}}</span>
+        </div>
+      </div>
+  
+
     <div padding-top class="center">
-      <span [class.state1]="mOrder.state==1" [class.state2]="mOrder.state==2" [class.state3]="mOrder.state==3">{{mOrder.state | orderType}}</span>
+      <span [class.state1]="mOrder.state==2" [class.state2]="mOrder.state==1" [class.state3]="mOrder.state==0">{{mOrder.state | orderType}}</span>
     </div>
   </div>
 </ion-content>

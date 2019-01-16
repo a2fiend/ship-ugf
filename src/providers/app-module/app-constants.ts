@@ -22,8 +22,7 @@ export const LOGIN_TYPE = {
 }
 
 export const ORDER_TYPE = {
-    COMPLETE: 1,
-    CONFIRMED: 2,
-    CONFIRMING: 3,
-
+    CONFIRMING: 0,
+    CONFIRMED: 1,
+    COMPLETE: 2
 }

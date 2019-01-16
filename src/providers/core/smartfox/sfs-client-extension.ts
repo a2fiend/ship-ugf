@@ -31,8 +31,8 @@ export class SfsClientBaseExtension {
         let page = 0;
         let array: any = null;
         if (content) {
-            if (content.containsKey(ParamsKey.NEXT)) {
-                nextPage = content.getInt(ParamsKey.NEXT);
+            if (content.containsKey(ParamsKey.NEXT_PAGE)) {
+                nextPage = content.getInt(ParamsKey.NEXT_PAGE);
             }
             page = content.getInt(ParamsKey.PAGE);
             if (content.containsKey(ParamsKey.ARRAY)) {

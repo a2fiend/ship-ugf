@@ -83,7 +83,7 @@ export class RegisterPage {
       this.mUser.setUsername(this.username);
 
       this.mAppModule.showLoading().then(() => {
-        ShipUgfSFSConnector.getInstance().rendRequestUSER_REGISTER(this.mUser)
+        ShipUgfSFSConnector.getInstance().sendRequestUSER_REGISTER(this.mUser)
       })
     }
     else if (this.password.trim() != this.rePassword.trim()) {

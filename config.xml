@@ -88,4 +88,5 @@
     <plugin name="onesignal-cordova-plugin" spec="2.4.6" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
+    <engine name="android" spec="7.1.4" />
 </widget>

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AppModuleProvider } from '../../providers/app-module/app-module';
 import { ShipUgfSFSConnector } from '../../providers/ship-ugf-sfs/shipugf-connector';
 import { ShipUgfBaseExtension } from '../../providers/ship-ugf-sfs/shipugf-base-extension';
 import { ShipUgfSFSCmd } from '../../providers/ship-ugf-sfs/shipugf-cmd';
 import { OrderBean } from '../../providers/classes/order-bean';
 import { ORDER_TYPE } from '../../providers/app-module/app-constants';
+import { Utils } from '../../providers/core/app/utils';
 
 /**
  * Generated class for the MainPage page.
@@ -20,18 +21,28 @@ import { ORDER_TYPE } from '../../providers/app-module/app-constants';
   templateUrl: 'main.html',
 })
 export class MainPage {
+  @ViewChild(Content) myContent: Content;
 
   listOrder: Array<OrderBean> = [];
+  listOrderFilter: Array<OrderBean> = [];
 
-  filterSelected: number = 1;
+  filterSelected: number = -1;
+
+  page: number = 0;
+  nextPage: number = -1;
+
+  searchQuery: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public mAppModule: AppModuleProvider
   ) {
   }
 
+  onLoadData() {
+    ShipUgfSFSConnector.getInstance().sendRequestUSER_GET_LIST_ORDER(this.page, this.filterSelected);
+  }
+
   ionViewDidLoad() {
-    this.onFakeListOrder();
     if (!this.mAppModule.isLogin) {
       this.mAppModule.goToLoadingPage();
       return;
@@ -40,7 +51,7 @@ export class MainPage {
       ShipUgfSFSConnector.getInstance().addListener("MainPage", response => {
         this.onExtensionResponse(response);
       });
-
+      this.onLoadData();
     });
   }
 
@@ -56,6 +67,15 @@ export class MainPage {
       if (cmd == ShipUgfSFSCmd.USER_GET_INFO) {
         this.onExtensionUSER_GET_INFO(data);
       }
+      else if (cmd == ShipUgfSFSCmd.USER_GET_LIST_ORDER) {
+        this.onExtensionUSER_GET_LIST_ORDER(data);
+      }
+      else if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
+        this.onExtensionUSER_ADD_ORDER(data);
+      }
+      else if (cmd == ShipUgfSFSCmd.USER_DELETE_ORDER) {
+        this.onExtensionUSER_DELETE_ORDER(data);
+      }
     }
   }
 
@@ -64,8 +84,43 @@ export class MainPage {
 
   }
 
-  onTestRequest() {
-    ShipUgfSFSConnector.getInstance().rendRequestUSER_GET_INFO();
+  onExtensionUSER_GET_LIST_ORDER(data) {
+    this.mAppModule.hideLoading();
+    if (data.array.length > 0) {
+      this.page = data.page;
+      if (data.nextPage) {
+        this.nextPage = data.nextPage;
+      } else {
+        this.nextPage = -1;
+      }
+      if (data.page < 1) {
+        this.listOrder = data.array;
+        this.listOrderFilter = data.array;
+      } else {
+        this.listOrder = this.listOrder.concat(data.array);
+        this.listOrderFilter = this.listOrder.concat(data.array);
+      }
+    } else {
+      this.listOrder = [];
+      this.listOrderFilter = [];
+    }
+  }
+
+  onExtensionUSER_ADD_ORDER(data) {
+    if (data) {
+      this.listOrder.unshift(data);
+    }
+  }
+
+  onExtensionUSER_DELETE_ORDER(data) {
+    if (data) {
+      let index = this.listOrder.findIndex(item => {
+        return data.getOrderID() == item.getOrderID();
+      });
+      if (index > -1) {
+        this.listOrder.splice(index, 1);
+      }
+    }
   }
 
   onClickMore(order: OrderBean) {
@@ -81,7 +136,11 @@ export class MainPage {
         } else if (res == 2) {
           this.navCtrl.push("OrderAddPage", { params: order });
         } else if (res == 3) {
-
+          this.mAppModule.showAlert(order.getCode(), res => {
+            if (res == 1) {
+              ShipUgfSFSConnector.getInstance().sendRequestUSER_DELETE_ORDER(order.getOrderID());
+            }
+          }, "Bạn có chắc muốn xóa đơn hàng này?")
         }
       });
     }
@@ -99,35 +158,53 @@ export class MainPage {
     this.navCtrl.push("OrderAddPage");
   }
 
-  onFakeListOrder() {
-    for (let i = 0; i < 10; i++) {
-      let newOrder = new OrderBean();
-      newOrder.setCode("UGF_ship_0000" + i);
-      newOrder.setSenderName("Nguyễn Văn A" + i);
-      newOrder.setTargetName("Nguyễn Văn B" + i);
-      newOrder.setSenderPhone("0123456789");
-      newOrder.setTargetPhone("0123456789");
-      newOrder.setAddress("Số 1 Đại Cồ Việt");
-      newOrder.setState(Math.floor(Math.random() * 3) + 1);
-
-      this.listOrder.push(newOrder);
-    }
-
-    console.log(this.listOrder);
-
-  }
-
   onClickFilter() {
+    this.myContent.scrollToTop();
     let listRadio = [
-      { id: 1, name: "Tất cả" },
-      { id: 2, name: "Đang chờ xét duyệt" },
-      { id: 3, name: "Đã xét duyệt" },
-      { id: 4, name: "Đã hoàn thành" }
+      { id: -1, name: "Tất cả" },
+      { id: 0, name: "Đang chờ xét duyệt" },
+      { id: 1, name: "Đã xét duyệt" },
+      { id: 2, name: "Đã hoàn thành" }
     ];
     this.mAppModule.showRadio("Loại đơn hàng", listRadio, this.filterSelected, res => {
       this.filterSelected = res;
+      this.page = 0;
+      this.mAppModule.showLoading();
+      ShipUgfSFSConnector.getInstance().sendRequestUSER_GET_LIST_ORDER(this.page, this.filterSelected);
+    });
+  }
 
-    })
+  onClickSearch() {
+    if (this.searchQuery.trim() != "") {
+      this.listOrder = this.listOrderFilter.filter(order => {
+        return Utils.bodauTiengViet(order.getSenderName().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery)) ||
+          Utils.bodauTiengViet(order.getSenderPhone().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery)) ||
+          Utils.bodauTiengViet(order.getTargetName().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery)) ||
+          Utils.bodauTiengViet(order.getTargetPhone().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery)) ||
+          Utils.bodauTiengViet(order.getAddress().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery)) ||
+          Utils.bodauTiengViet(order.getCode().toLowerCase()).includes(Utils.bodauTiengViet(this.searchQuery))
+      });
+    } else {
+      this.listOrder = this.listOrderFilter;
+    }
+  }
+
+  doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      if (this.nextPage > -1) {
+        this.page = this.page + 1;
+      }
+      this.onLoadData();
+      infiniteScroll.complete();
+    }, 500);
+  }
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.page = 0;
+      this.onLoadData();
+      refresher.complete();
+    }, 1500);
   }
 
 }

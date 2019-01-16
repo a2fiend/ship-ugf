@@ -1,31 +1,33 @@
 import { ParamsKey } from "../app-module/paramskey";
 
 export class OrderBean {
-    private 					orderID			:number = 0;
-	private 					targetID		:number = 0;
-	private 					senderID		:number = 0;
+	private 					orderID			:number = -1;
+	private 					userID			:number = -1;
+	private 					targetID		:number = -1;
+	private 					senderID		:number = -1;
 	private 					type			:number = 0;
 	private 					state			:number = 0;
 	private 				    timeCreated		:number = 0;
-	private 				    timeSend		:number = 0;
-	private				code			= "";
-	private				targetName		= "";
-	private				senderName		= "";
-	private				description		= "";
-	private				address			= "";
-	private				targetPhone		= "";
-	private				senderPhone		= "";
+	private 			timeSend		: string = "";
+	private				code			: string = "";
+	private				targetName		: string = "";
+	private				senderName		: string = "";
+	private				description		: string = "";
+	private				address			: string = "";
+	private				targetPhone		: string = "";
+	private				senderPhone		: string = "";
 
 
 	public toSFSObject(obj): any {
 		
 		obj.putInt(ParamsKey.ORDER_ID, this.getOrderID());
+		obj.putInt(ParamsKey.USER_ID, this.getUserID());
 		obj.putInt(ParamsKey.STATE, this.getState());
 		obj.putInt(ParamsKey.TYPE, this.getType());
 		obj.putInt(ParamsKey.TARGET_ID, this.getTargetID());
 		obj.putInt(ParamsKey.SENDER_ID, this.getSenderID());
 		obj.putLong(ParamsKey.TIME_CREATED, this.getTimeCreated());
-		obj.putLong(ParamsKey.TIME_SEND, this.getTimeSend());
+		obj.putUtfString(ParamsKey.TIME_SEND, this.getTimeSend());
 		obj.putUtfString(ParamsKey.TARGET_NAME, this.getTargetName());
 		obj.putUtfString(ParamsKey.SENDER_NAME, this.getSenderName());
 		obj.putUtfString(ParamsKey.TARGET_PHONE, this.getTargetPhone());
@@ -41,6 +43,7 @@ export class OrderBean {
 	public fromSFSObject(object: any) {
 		if (object == null) return;
 		if (object.containsKey(ParamsKey.ORDER_ID)) this.setOrderID(object.getInt(ParamsKey.ORDER_ID));
+		if (object.containsKey(ParamsKey.USER_ID)) this.setUserID(object.getInt(ParamsKey.USER_ID));
 		if (object.containsKey(ParamsKey.STATE)) this.setState(object.getInt(ParamsKey.STATE));
 		if (object.containsKey(ParamsKey.TYPE)) this.setType(object.getInt(ParamsKey.TYPE));
 		if (object.containsKey(ParamsKey.TARGET_ID)) this.setTargetID(object.getInt(ParamsKey.TARGET_ID));
@@ -57,7 +60,7 @@ export class OrderBean {
 
 	}
 
-    public getOrderID() {
+    public getOrderID() : number {
 		return this.orderID;
 	}
 
@@ -65,7 +68,15 @@ export class OrderBean {
 		this.orderID = orderID;
 	}
 
-	public getTargetID() {
+    public getUserID() : number {
+		return this.userID;
+	}
+
+	public setUserID( userID: number ) {
+		this.userID = userID;
+	}
+
+	public getTargetID() : number {
 		return this.targetID;
 	}
 
@@ -73,7 +84,7 @@ export class OrderBean {
 		this.targetID = targetID;
 	}
 
-	public getSenderID() {
+	public getSenderID() : number {
 		return this.senderID;
 	}
 
@@ -81,7 +92,7 @@ export class OrderBean {
 		this.senderID = senderID;
 	}
 
-	public getType() {
+	public getType() : number {
 		return this.type;
 	}
 
@@ -89,7 +100,7 @@ export class OrderBean {
 		this.type = type;
 	}
 
-	public getState() {
+	public getState() : number {
 		return this.state;
 	}
 
@@ -97,7 +108,7 @@ export class OrderBean {
 		this.state = state;
 	}
 
-	public getTimeCreated() {
+	public getTimeCreated() : number {
 		return this.timeCreated;
 	}
 
@@ -105,15 +116,15 @@ export class OrderBean {
 		this.timeCreated = timeCreated;
 	}
 
-	public getTimeSend() {
+	public getTimeSend() : string {
 		return this.timeSend;
 	}
 
-	public setTimeSend(timeSend: number ) {
+	public setTimeSend(timeSend: string ) {
 		this.timeSend = timeSend;
 	}
 
-	public getCode() {
+	public getCode() : string {
 		return this.code;
 	}
 
@@ -121,7 +132,7 @@ export class OrderBean {
 		this.code = code;
 	}
 
-	public getTargetName() {
+	public getTargetName() : string {
 		return this.targetName;
 	}
 
@@ -129,7 +140,7 @@ export class OrderBean {
 		this.targetName = targetName;
 	}
 
-	public getSenderName() {
+	public getSenderName() : string {
 		return this.senderName;
 	}
 
@@ -137,7 +148,7 @@ export class OrderBean {
 		this.senderName = senderName;
 	}
 
-	public getDescription() {
+	public getDescription() : string {
 		return this.description;
 	}
 
@@ -145,7 +156,7 @@ export class OrderBean {
 		this.description = description;
 	}
 
-	public getAddress() {
+	public getAddress() : string {
 		return this.address;
 	}
 
@@ -153,7 +164,7 @@ export class OrderBean {
 		this.address = address;
 	}
 
-	public getTargetPhone() {
+	public getTargetPhone() : string {
 		return this.targetPhone;
 	}
 
@@ -161,7 +172,7 @@ export class OrderBean {
 		this.targetPhone = targetPhone;
 	}
 
-	public getSenderPhone() {
+	public getSenderPhone() : string {
 		return this.senderPhone;
 	}
 

@@ -33,8 +33,18 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         else if (cmd == ShipUgfSFSCmd.USER_REGISTER) {
             return this.onExtensionUSER_REGISTER(params);
         }
+
         else if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
             return this.onExtensionUSER_ADD_ORDER(params);
+        }
+        else if (cmd == ShipUgfSFSCmd.USER_GET_LIST_ORDER) {
+            return this.onExtensionUSER_GET_LIST_ORDER(params);
+        }
+        else if (cmd == ShipUgfSFSCmd.USER_UPDATE_ORDER) {
+            return this.onExtensionUSER_UPDATE_ORDER(params);
+        }
+        else if (cmd == ShipUgfSFSCmd.USER_DELETE_ORDER) {
+            return this.onExtensionUSER_DELETE_ORDER(params);
         }
     }
 
@@ -55,6 +65,35 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
     }
 
     public onExtensionUSER_ADD_ORDER(params) {
+        let data = this.doParseInfo(params);
+        let info = data.info;
+        let object = new OrderBean();
+        object.fromSFSObject(info);
+        return object;
+    }
+
+    public onExtensionUSER_GET_LIST_ORDER(params) {
+        let data = this.doParseArrayExtensions(params);
+        let array = data.array;
+        let arrayObject: Array<OrderBean> = [];
+        for (let i = 0; i < array.size(); i++) {
+            let sfsobject = array.getSFSObject(i);
+            let object = new OrderBean();
+            object.fromSFSObject(sfsobject);
+            arrayObject.push(object);
+        }
+        return { array: arrayObject, page: data.page, nextPage: data.nextPage }
+    }
+
+    public onExtensionUSER_UPDATE_ORDER(params) {
+        let data = this.doParseInfo(params);
+        let info = data.info;
+        let object = new OrderBean();
+        object.fromSFSObject(info);
+        return object;
+    }
+
+    public onExtensionUSER_DELETE_ORDER(params) {
         let data = this.doParseInfo(params);
         let info = data.info;
         let object = new OrderBean();

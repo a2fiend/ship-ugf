@@ -38,6 +38,8 @@ export class OrderAddPage {
     if (this.navParams.data["params"]) {
       this.saveType = 2;
       this.mOrder = this.navParams.get("params");
+      this.mDate = moment(new Date(this.mOrder.getTimeSend())).format("YYYY-MM-DD");
+      this.mTime = moment(new Date(this.mOrder.getTimeSend())).format("HH:mm");
     }
   }
 
@@ -66,31 +68,39 @@ export class OrderAddPage {
       if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
         this.onExtensionUSER_ADD_ORDER(data);
       }
+      else if (cmd == ShipUgfSFSCmd.USER_UPDATE_ORDER) {
+        this.onExtensionUSER_UPDATE_ORDER(data);
+      }
     }
   }
 
   onExtensionUSER_ADD_ORDER(data) {
-    if(data) {
+    if (data) {
       this.mAppModule.showToast("Tạo đơn hàng thành công");
-      
+      this.navCtrl.pop();
     }
-
   }
 
+  onExtensionUSER_UPDATE_ORDER(data) {
+    if (data) {
+      this.mAppModule.showToast("Cập nhật đơn hàng thành công");
+      this.navCtrl.pop();
+    }
+  }
   onDateChange() {
-    this.mOrder.setTimeSend(new Date(this.mDate + " " + this.mTime).getTime());
+    this.mOrder.setTimeSend(this.mDate + " " + this.mTime);
   }
 
   onTimeChange() {
-    this.mOrder.setTimeSend(new Date(this.mDate + " " + this.mTime).getTime());
+    this.mOrder.setTimeSend(this.mDate + " " + this.mTime);
   }
 
   onClickCreateOrder() {
-    ShipUgfSFSConnector.getInstance().rendRequestUSER_ADD_ORDER(this.mOrder);
+    ShipUgfSFSConnector.getInstance().sendRequestUSER_ADD_ORDER(this.mOrder);
   }
 
   onClickSaveOrder() {
-    console.log(this.mOrder);
+    ShipUgfSFSConnector.getInstance().sendRequestUSER_UPDATE_ORDER(this.mOrder);
 
   }
 

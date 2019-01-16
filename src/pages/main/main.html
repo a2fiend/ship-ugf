@@ -24,18 +24,23 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div>
-    <ion-searchbar mode="ios"></ion-searchbar>
+    <ion-searchbar mode="ios" [(ngModel)]="searchQuery" (ionInput)="onClickSearch()" (ionCancel)="onClickSearch()"
+      (keyup.enter)="onClickSearch()"></ion-searchbar>
   </div>
 
-  <div class="m-order" *ngFor="let item of listOrder" [class.bg-state1]="item.state==1" [class.bg-state2]="item.state==2"
-    [class.bg-state3]="item.state==3">
+  <div class="m-order" *ngFor="let item of listOrder" [class.bg-state1]="item.state==2" [class.bg-state2]="item.state==1"
+    [class.bg-state3]="item.state==0">
     <ion-row class="flex">
       <ion-col col-1>
         <div class="center" style="font-size: 1.7rem">
-          <ion-icon *ngIf="item.state==1" class="state1" name="ugf-done"></ion-icon>
-          <ion-icon *ngIf="item.state==2" class="state2" name="ugf-sign"></ion-icon>
-          <ion-icon *ngIf="item.state==3" class="state3" name="ugf-question"></ion-icon>
+          <ion-icon *ngIf="item.state==2" class="state1" name="ugf-done"></ion-icon>
+          <ion-icon *ngIf="item.state==1" class="state2" name="ugf-sign"></ion-icon>
+          <ion-icon *ngIf="item.state==0" class="state3" name="ugf-question"></ion-icon>
         </div>
       </ion-col>
       <ion-col col-10 (click)="onClickItem(item)">
@@ -61,10 +66,16 @@
     </ion-row>
   </div>
 
+  <div *ngIf="listOrder.length==0" class="no-order">Không có đơn hàng nào!</div>
+
   <ion-fab bottom right>
     <button ion-fab mini class="primary-background" (click)="onClickAddOrder()">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
+
+  <ion-infinite-scroll *ngIf="nextPage > page" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
