@@ -23,7 +23,7 @@
         "name_default": "Web"
     },
     "smartfox": {
-        "smartfox_server": "smartfox_test",
+        "smartfox_server": "smartfox_primary",
         "smartfox_primary": {
             "host": "163.44.192.123",
             "port": 8887,

@@ -75,8 +75,6 @@ export class LoginPage {
   }
 
   goToRegisterPage() {
-    console.log("sdklfjskld");
-    
     this.mAppModule.showModal("RegisterPage", null, data => {
       if (data) {
         this.loginType = LOGIN_TYPE.USERNAME_PASSWORD;
