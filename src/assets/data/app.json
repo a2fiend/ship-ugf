@@ -23,7 +23,7 @@
         "name_default": "Web"
     },
     "smartfox": {
-        "smartfox_server": "smartfox_test",
+        "smartfox_server": "smartfox_primary",
         "smartfox_primary": {
             "host": "163.44.192.123",
             "port": 8887,
@@ -31,7 +31,7 @@
             "debug": true
         },
         "smartfox_test": {
-            "host": "192.168.1.224",
+            "host": "192.168.0.112",
             "port": 8886,
             "zone": "UgfZone",
             "debug": true
