@@ -158,6 +158,10 @@ export class MainPage {
     this.navCtrl.push("OrderAddPage");
   }
 
+  onClickProfile(){
+    this.navCtrl.push("ProfilePage");
+  }
+
   onClickFilter() {
     this.myContent.scrollToTop();
     let listRadio = [

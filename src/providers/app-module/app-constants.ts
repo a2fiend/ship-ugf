@@ -1,3 +1,4 @@
+import { PictureSourceType } from "@ionic-native/camera";
 
 export class APPKEYS {
     public static LOGIN_STATUS: string = "login_status";
@@ -25,4 +26,22 @@ export const ORDER_TYPE = {
     CONFIRMING: 0,
     CONFIRMED: 1,
     COMPLETE: 2
+}
+
+export class ConstanManager {
+    public static _instance: ConstanManager = null;
+    constructor() { }
+
+    public static getInstance(): ConstanManager {
+        if (this._instance == null) {
+            this._instance = new ConstanManager();
+        }
+        return this._instance;
+    }
+    public getActionPictureClicked(): Array<{ id: number, name: string }> {
+        return [
+            { id: PictureSourceType.PHOTOLIBRARY, name: "Chọn ảnh từ thư viện" },
+            { id: PictureSourceType.CAMERA, name: "Máy ảnh" }
+        ]
+    }
 }

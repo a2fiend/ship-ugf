@@ -96,12 +96,29 @@ export class OrderAddPage {
   }
 
   onClickCreateOrder() {
-    ShipUgfSFSConnector.getInstance().sendRequestUSER_ADD_ORDER(this.mOrder);
+    if (this.mOrder.getSenderName().trim() != "" &&
+      this.mOrder.getSenderPhone().trim() != "" &&
+      this.mOrder.getTargetName().trim() != "" &&
+      this.mOrder.getTargetPhone().trim() != "" &&
+      this.mOrder.getAddress().trim() != ""
+    ) {
+      ShipUgfSFSConnector.getInstance().sendRequestUSER_ADD_ORDER(this.mOrder);
+    } else {
+      this.mAppModule.showToast("Thiếu thông tin đơn hàng")
+    }
   }
 
   onClickSaveOrder() {
-    ShipUgfSFSConnector.getInstance().sendRequestUSER_UPDATE_ORDER(this.mOrder);
-
+    if (this.mOrder.getSenderName().trim() != "" &&
+      this.mOrder.getSenderPhone().trim() != "" &&
+      this.mOrder.getTargetName().trim() != "" &&
+      this.mOrder.getTargetPhone().trim() != "" &&
+      this.mOrder.getAddress().trim() != ""
+    ) {
+      ShipUgfSFSConnector.getInstance().sendRequestUSER_UPDATE_ORDER(this.mOrder);
+    } else {
+      this.mAppModule.showToast("Các thông tin bắt buộc không được bỏ trống")
+    }
   }
 
 }

@@ -19,7 +19,7 @@ export class OrderBean {
 
 
 	public toSFSObject(obj): any {
-		
+			
 		obj.putInt(ParamsKey.ORDER_ID, this.getOrderID());
 		obj.putInt(ParamsKey.USER_ID, this.getUserID());
 		obj.putInt(ParamsKey.STATE, this.getState());

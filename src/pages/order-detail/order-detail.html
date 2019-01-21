@@ -21,61 +21,71 @@
 <ion-content>
   <div margin class="m-box">
     <div padding-horizontal class="between-space">
-      <span class="bold normal-font">{{mOrder.code}}</span>
+      <span class="bold large-font">{{mOrder.code}}</span>
       <ion-icon [hidden]="mOrder.state!=3" class="big-font orange-color" name="ugf-edit"></ion-icon>
     </div>
 
     <div padding-horizontal padding-top>
       <div>
-        <span class="underline semi-font">Người gửi</span>
+        <span class="underline normal-font">Người gửi</span>
       </div>
       <div class="padding-top-5 flex">
         <ion-icon class="red-color" name="ugf-user"></ion-icon>&ensp;
-        <span class="bold normal-font">{{mOrder.senderName || 'Chưa cập nhật'}}</span>
+        <span class="bold large-font">{{mOrder.senderName || 'Chưa cập nhật'}}</span>
       </div>
       <div class="padding-top-5 flex">
         <ion-icon class="green-color" name="ugf-phone"></ion-icon>&ensp;
-        <span>{{mOrder.senderPhone || 'Chưa cập nhật'}}</span>
+        <span class="normal-font">{{mOrder.senderPhone || 'Chưa cập nhật'}}</span>
       </div>
     </div>
 
     <div padding-horizontal padding-top>
       <div>
-        <span class="underline semi-font">Người nhận</span>
+        <span class="underline normal-font">Người nhận</span>
       </div>
       <div class="padding-top-5 flex">
         <ion-icon class="red-color" name="ugf-user"></ion-icon>&ensp;
-        <span class="bold normal-font">{{mOrder.targetName || 'Chưa cập nhật'}}</span>
+        <span class="bold large-font">{{mOrder.targetName || 'Chưa cập nhật'}}</span>
       </div>
       <div class="padding-top-5 flex">
         <ion-icon class="green-color" name="ugf-phone"></ion-icon>&ensp;
-        <span>{{mOrder.targetPhone || 'Chưa cập nhật'}}</span>
+        <span class="normal-font">{{mOrder.targetPhone || 'Chưa cập nhật'}}</span>
       </div>
     </div>
 
     <div padding-horizontal padding-top>
       <div>
-        <span class="underline semi-font">Địa chỉ nhận hàng</span>
+        <span class="underline normal-font">Địa chỉ nhận hàng</span>
       </div>
       <div class="padding-top-5 flex">
         <ion-icon class="blue-color" name="ugf-address"></ion-icon>&ensp;
-        <span>{{mOrder.address || 'Chưa cập nhật'}}</span>
+        <span class="normal-font">{{mOrder.address || 'Chưa cập nhật'}}</span>
       </div>
     </div>
 
     <div padding-horizontal padding-top>
-        <div>
-          <span class="underline semi-font">Thời gian nhận hàng</span>
-        </div>
-        <div class="padding-top-5 flex">
-          <ion-icon class="orange-color" name="md-time"></ion-icon>&ensp;
-          <span>{{mOrder.timeSend | timeToString}}</span>
-        </div>
+      <div>
+        <span class="underline normal-font">Thời gian nhận hàng</span>
       </div>
-  
+      <div class="padding-top-5 flex">
+        <ion-icon class="orange-color" name="md-time"></ion-icon>&ensp;
+        <span class="normal-font">{{mOrder.timeSend | timeToString}}</span>
+      </div>
+    </div>
+
+    <div padding-horizontal padding-top>
+      <div>
+        <span class="underline normal-font">Mô tả</span>
+      </div>
+      <div class="padding-top-5 flex">
+        <span class="normal-font">{{mOrder.description}}</span>
+      </div>
+    </div>
+
 
     <div padding-top class="center">
-      <span [class.state1]="mOrder.state==2" [class.state2]="mOrder.state==1" [class.state3]="mOrder.state==0">{{mOrder.state | orderType}}</span>
+      <span class="normal-font" [class.state1]="mOrder.state==2" [class.state2]="mOrder.state==1" [class.state3]="mOrder.state==0">{{mOrder.state
+        | orderType}}</span>
     </div>
   </div>
 </ion-content>

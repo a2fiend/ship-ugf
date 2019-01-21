@@ -1,0 +1,275 @@
+progress-upload {
+    .xp-progress-upload-container{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background: transparent;
+      }
+      .box-shadow{
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      }
+      .xp-pro-upload-header{
+        background: map-get($map: $appColors, $key: primary);
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      .overlay-container{
+        text-align: center;
+        border-radius: 5px;
+        min-width: 200px;
+        background: whitesmoke;
+      }
+      .padding{
+        padding: 20px;
+      }
+      .fixed{
+        position: fixed;
+      }
+    
+      .spinnner-container{
+        padding: 30px 0;
+        text-align: center;
+      }
+    
+      .loading-res-progress-container {
+        height: 4px;
+        border-radius: 10px;
+        width: 200px;
+        background: lightgray;
+    
+        .loading-res-progress-animate {
+            height: 100%;
+            background: map-get($map: $appColors, $key: primary);
+            border-radius: 10px;
+            transform-origin: left;
+            transition: 1s;
+            transform: scale(0,1);
+        }
+      }
+    
+      .cssload-fond {
+        position: relative;
+      }
+    
+      .cssload-container-general {
+        animation: cssload-animball_two 1s infinite;
+        -o-animation: cssload-animball_two 1s infinite;
+        -ms-animation: cssload-animball_two 1s infinite;
+        -webkit-animation: cssload-animball_two 1s infinite;
+        -moz-animation: cssload-animball_two 1s infinite;
+        width: 44px;
+        height: 44px;
+        margin: auto;
+      }
+    
+      .cssload-internal {
+        width: 44px;
+        height: 44px;
+        position: absolute;
+      }
+    
+      .cssload-ballcolor {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+    
+      .cssload-ball_1,
+      .cssload-ball_2,
+      .cssload-ball_3,
+      .cssload-ball_4 {
+        position: absolute;
+        animation: cssload-animball_one 1s infinite ease;
+        -o-animation: cssload-animball_one 1s infinite ease;
+        -ms-animation: cssload-animball_one 1s infinite ease;
+        -webkit-animation: cssload-animball_one 1s infinite ease;
+        -moz-animation: cssload-animball_one 1s infinite ease;
+      }
+    
+      .cssload-ball_1 {
+        background-color: #cb2025;
+        top: 0;
+        left: 0;
+      }
+    
+      .cssload-ball_2 {
+        background-color: #f8b334;
+        top: 0;
+        left: 24px;
+      }
+    
+      .cssload-ball_3 {
+        background-color: #00a096;
+        top: 24px;
+        left: 0;
+      }
+    
+      .cssload-ball_4 {
+        background-color: #97bf0d;
+        top: 24px;
+        left: 24px;
+      }
+    
+    
+    
+    
+    
+      @keyframes cssload-animball_one {
+        0% {
+          position: absolute;
+        }
+    
+        50% {
+          top: 12px;
+          left: 12px;
+          position: absolute;
+          opacity: 0.5;
+        }
+    
+        100% {
+          position: absolute;
+        }
+      }
+    
+      @-o-keyframes cssload-animball_one {
+        0% {
+          position: absolute;
+        }
+    
+        50% {
+          top: 12px;
+          left: 12px;
+          position: absolute;
+          opacity: 0.5;
+        }
+    
+        100% {
+          position: absolute;
+        }
+      }
+    
+      @-ms-keyframes cssload-animball_one {
+        0% {
+          position: absolute;
+        }
+    
+        50% {
+          top: 12px;
+          left: 12px;
+          position: absolute;
+          opacity: 0.5;
+        }
+    
+        100% {
+          position: absolute;
+        }
+      }
+    
+      @-webkit-keyframes cssload-animball_one {
+        0% {
+          position: absolute;
+        }
+    
+        50% {
+          top: 12px;
+          left: 12px;
+          position: absolute;
+          opacity: 0.5;
+        }
+    
+        100% {
+          position: absolute;
+        }
+      }
+    
+      @-moz-keyframes cssload-animball_one {
+        0% {
+          position: absolute;
+        }
+    
+        50% {
+          top: 12px;
+          left: 12px;
+          position: absolute;
+          opacity: 0.5;
+        }
+    
+        100% {
+          position: absolute;
+        }
+      }
+    
+      @keyframes cssload-animball_two {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+    
+        50% {
+          transform: rotate(360deg) scale(1.3);
+        }
+    
+        100% {
+          transform: rotate(720deg) scale(1);
+        }
+      }
+    
+      @-o-keyframes cssload-animball_two {
+        0% {
+          -o-transform: rotate(0deg) scale(1);
+        }
+    
+        50% {
+          -o-transform: rotate(360deg) scale(1.3);
+        }
+    
+        100% {
+          -o-transform: rotate(720deg) scale(1);
+        }
+      }
+    
+      @-ms-keyframes cssload-animball_two {
+        0% {
+          -ms-transform: rotate(0deg) scale(1);
+        }
+    
+        50% {
+          -ms-transform: rotate(360deg) scale(1.3);
+        }
+    
+        100% {
+          -ms-transform: rotate(720deg) scale(1);
+        }
+      }
+    
+      @-webkit-keyframes cssload-animball_two {
+        0% {
+          -webkit-transform: rotate(0deg) scale(1);
+        }
+    
+        50% {
+          -webkit-transform: rotate(360deg) scale(1.3);
+        }
+    
+        100% {
+          -webkit-transform: rotate(720deg) scale(1);
+        }
+      }
+    
+      @-moz-keyframes cssload-animball_two {
+        0% {
+          -moz-transform: rotate(0deg) scale(1);
+        }
+    
+        50% {
+          -moz-transform: rotate(360deg) scale(1.3);
+        }
+    
+        100% {
+          -moz-transform: rotate(720deg) scale(1);
+        }
+      }
+}

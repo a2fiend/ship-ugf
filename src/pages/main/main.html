@@ -8,7 +8,8 @@
 
   <ion-toolbar>
     <ion-buttons left>
-      <button ion-button icon-only menuToggle>
+      <!-- <button ion-button icon-only menuToggle> -->
+      <button ion-button icon-only (click)="onClickProfile()">
         <ion-icon name="ugf-user"></ion-icon>
       </button>
     </ion-buttons>
@@ -43,16 +44,16 @@
           <ion-icon *ngIf="item.state==0" class="state3" name="ugf-question"></ion-icon>
         </div>
       </ion-col>
-      <ion-col col-10 (click)="onClickItem(item)">
+      <ion-col class="normal-font" col-10 (click)="onClickItem(item)">
         <div>
-          <span class="bold normal-font">{{item.senderName}}</span>
+          <span class="bold large-font">{{item.senderName}}</span>
           <span>(Người gửi)</span>
         </div>
         <div>
           <span class="semi-font">{{item.code}}</span>
         </div>
         <div padding-top>
-          <span>{{item.senderPhone}}</span>
+          <span class="red-color">{{item.senderPhone}}</span>
         </div>
         <div>
           <span>{{item.address}}</span>

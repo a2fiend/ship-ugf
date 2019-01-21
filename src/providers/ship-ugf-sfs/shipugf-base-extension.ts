@@ -3,6 +3,7 @@ import { ParamsKey } from "../app-module/paramskey";
 import { ShipUgfSFSCmd } from "./shipugf-cmd";
 import { UserBean } from "../classes/user-bean";
 import { OrderBean } from "../classes/order-bean";
+import { ShipUgfSFSConnector } from "./shipugf-connector";
 
 export class ShipUgfBaseExtension extends SfsClientBaseExtension {
     public static _instance: ShipUgfBaseExtension = null;
@@ -33,6 +34,9 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         else if (cmd == ShipUgfSFSCmd.USER_REGISTER) {
             return this.onExtensionUSER_REGISTER(params);
         }
+        else if (cmd == ShipUgfSFSCmd.USER_UPDATE_INFO) {
+            return this.onExtensionUSER_UPDATE_INFO(params);
+        }
 
         else if (cmd == ShipUgfSFSCmd.USER_ADD_ORDER) {
             return this.onExtensionUSER_ADD_ORDER(params);
@@ -45,6 +49,10 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         }
         else if (cmd == ShipUgfSFSCmd.USER_DELETE_ORDER) {
             return this.onExtensionUSER_DELETE_ORDER(params);
+        }
+
+        else if (cmd == ShipUgfSFSCmd.UPLOAD_IMAGE) {
+            return this.onExtensionUPLOAD_IMAGE(params);
         }
     }
 
@@ -63,6 +71,15 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         object.fromSFSObject(info);
         return object;
     }
+
+    public onExtensionUSER_UPDATE_INFO(params) {
+        let data = this.doParseInfo(params);
+        let info = data.info;
+        let object = new UserBean();
+        object.fromSFSObject(info);
+        return object;
+    }
+
 
     public onExtensionUSER_ADD_ORDER(params) {
         let data = this.doParseInfo(params);
@@ -99,5 +116,29 @@ export class ShipUgfBaseExtension extends SfsClientBaseExtension {
         let object = new OrderBean();
         object.fromSFSObject(info);
         return object;
+    }
+
+    public onExtensionUPLOAD_IMAGE(params) {
+        let data = this.doParseArrayExtensions(params);
+        let array = data.array;
+        let type;
+
+        if (data.content.containsKey("__type")) {
+            type = data.content.getUtfString("__type");
+        }
+
+        let url: any;
+        if (array && type != 4) {
+            url = "http://" + ShipUgfSFSConnector.getInstance().getSFSHost() + ":" + ShipUgfSFSConnector.getInstance().getSFSPort() + "/" + array.getSFSObject(0).getUtfString(ParamsKey.URL);
+        }
+
+        if (type == 4) {
+            url = [];
+            for (let i = 0; i < array.size(); i++) {
+                let source = "http://" + ShipUgfSFSConnector.getInstance().getSFSHost() + ":" + ShipUgfSFSConnector.getInstance().getSFSPort() + "/" + array.getSFSObject(i).getUtfString(ParamsKey.URL);
+                url.push(source);
+            }
+        }
+        return { url: url, type: type };
     }
 }

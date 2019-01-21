@@ -20,46 +20,61 @@
 
 <ion-content>
 
-  <div class="m-box">
-    <!-- <div class="border-bottom">
-      <ion-label stacked>Mã đơn hàng</ion-label>
-      <ion-label class="red-color">{{mOrder.code}}</ion-label>
-    </div> -->
+  <div padding-horizontal padding-top>
+    <span class="normal-font underline">Người nhận</span>
+  </div>
+  <div class="m-box large-font">
     <div class="border-bottom">
       <ion-label stacked>Tên người nhận <span class="red-color">*</span></ion-label>
-      <ion-input placeholder="Nhập tên người nhận đơn hàng" [(ngModel)]="mOrder.targetName"></ion-input>
+      <ion-input placeholder="Nhập tên người nhận" [(ngModel)]="mOrder.targetName"></ion-input>
     </div>
     <div class="border-bottom">
       <ion-label stacked>Số điện thoại người nhận <span class="red-color">*</span></ion-label>
-      <ion-input placeholder="Nhập số điện thoại" [(ngModel)]="mOrder.targetPhone"></ion-input>
+      <ion-input type="number" placeholder="Nhập số điện thoại" [(ngModel)]="mOrder.targetPhone"></ion-input>
     </div>
-    <div class="border-bottom">
-      <ion-label stacked>Địa chỉ người nhận <span class="red-color">*</span></ion-label>
-      <ion-input placeholder="Nhập địa chỉ người nhận đơn hàng" [(ngModel)]="mOrder.address"></ion-input>
+    <div margin-bottom class="border-bottom">
+      <ion-label stacked>Địa chỉ người gửi <span class="red-color">*</span></ion-label>
+      <ion-input placeholder="Nhập địa chỉ người nhận" [(ngModel)]="mOrder.address"></ion-input>
     </div>
-    <div class="border-bottom">
-      <ion-label stacked>Tên người gửi</ion-label>
-      <ion-input placeholder="Nhập tên người gửi đơn hàng" [(ngModel)]="mOrder.senderName"></ion-input>
-    </div>
-    <div class="border-bottom">
-      <ion-label stacked>Số điện thoại người gửi</ion-label>
-      <ion-input placeholder="Nhập số điện thoại" [(ngModel)]="mOrder.senderPhone"></ion-input>
-    </div>
-    <div class="border-bottom">
-      <ion-label stacked>Thời gian nhận hàng</ion-label>
-      <div class="flex">
-        <div style="width: 50%;position: relative;">
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="mDate" (ionChange)="onDateChange()"></ion-datetime>
-        </div>
-        <div style="width: 50%;position: relative;">
-          <ion-datetime displayFormat="HH:mm" [(ngModel)]="mTime" (ionChange)="onTimeChange()"></ion-datetime>
-        </div>
+  </div>
+
+  <div padding-horizontal padding-top>
+    <span class="normal-font underline">Người gửi</span>
+  </div>
+  <div>
+    <div class="m-box large-font">
+      <div class="border-bottom">
+        <ion-label stacked>Tên người gửi <span class="red-color">*</span></ion-label>
+        <ion-input placeholder="Nhập tên người gửi" [(ngModel)]="mOrder.senderName"></ion-input>
+      </div>
+      <div margin-bottom class="border-bottom">
+        <ion-label stacked>Số điện thoại người gửi <span class="red-color">*</span></ion-label>
+        <ion-input type="number" placeholder="Nhập số điện thoại" [(ngModel)]="mOrder.senderPhone"></ion-input>
       </div>
     </div>
-    <div>
-      <ion-label stacked>Mô tả hàng hóa</ion-label>
-      <ion-textarea placeholder="Điền mô tả hàng hóa" [(ngModel)]="mOrder.description"></ion-textarea>
+
+    <div padding-horizontal padding-top>
+      <span class="normal-font underline">Thông tin khác</span>
     </div>
+    <div class="m-box large-font">
+      <div class="border-bottom">
+        <ion-label stacked>Thời gian nhận hàng</ion-label>
+        <div class="flex">
+          <div style="width: 50%;position: relative;">
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="mDate" (ionChange)="onDateChange()"></ion-datetime>
+          </div>
+          <div style="width: 50%;position: relative;">
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="mTime" (ionChange)="onTimeChange()"></ion-datetime>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-label stacked>Mô tả hàng hóa</ion-label>
+        <ion-textarea placeholder="Điền mô tả hàng hóa" [(ngModel)]="mOrder.description"></ion-textarea>
+      </div>
+    </div>
+
+
   </div>
 
 </ion-content>

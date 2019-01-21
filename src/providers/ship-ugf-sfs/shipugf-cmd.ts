@@ -11,4 +11,7 @@ export class ShipUgfSFSCmd {
 	public static USER_DELETE_ORDER					: string = "user_delete_order";
 	public static USER_FILTER_ORDER					: string = "user_filter_order";
 
+	public static UPLOAD_IMAGE: 		string = "upload_image";
+
+
 }
